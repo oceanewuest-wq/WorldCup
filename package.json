@@ -1,0 +1,7 @@
+{
+  "name": "wc2026-predictions",
+  "version": "2.0.0",
+  "main": "server.js",
+  "scripts": { "start": "node server.js" },
+  "dependencies": { "mongodb": "^6.3.0" }
+}

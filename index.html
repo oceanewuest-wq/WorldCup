@@ -1,0 +1,1141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>WC 2026 Predictions — ORSEN</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#f0f2f5;min-height:100vh;color:#1a1a2e}
+/* TOPBAR */
+.topbar{background:#0a1628;color:#fff;padding:14px 20px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;box-shadow:0 2px 8px rgba(0,0,0,0.3)}
+.topbar-title{font-size:17px;font-weight:700}
+.topbar-sub{font-size:11px;opacity:0.55;margin-top:2px}
+.user-chip{display:flex;align-items:center;gap:8px;font-size:13px;cursor:pointer}
+.user-emoji{font-size:22px;line-height:1}
+/* TABS */
+.tabs-wrap{background:#fff;border-bottom:1px solid #e8eaed;position:sticky;top:57px;z-index:99;overflow-x:auto}
+.tabs{display:flex;gap:0;min-width:max-content;padding:0 12px}
+.tab{padding:12px 14px;font-size:12px;font-weight:600;border:none;background:none;cursor:pointer;color:#888;border-bottom:2px solid transparent;white-space:nowrap;transition:all 0.15s}
+.tab.active{color:#0a1628;border-bottom-color:#0a1628}
+/* CONTAINER */
+.container{max-width:760px;margin:0 auto;padding:16px 14px}
+/* CARDS */
+.card{background:#fff;border-radius:14px;padding:18px;margin-bottom:12px;box-shadow:0 1px 3px rgba(0,0,0,0.07)}
+.card-title{font-size:15px;font-weight:700;margin-bottom:4px}
+.section-title{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;color:#aaa;margin-bottom:10px}
+/* MATCH CARD */
+.match-meta{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;flex-wrap:wrap;gap:4px}
+.match-stage{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;color:#888}
+.match-date{font-size:11px;color:#aaa}
+.match-timezones{font-size:10px;color:#bbb;margin-bottom:10px}
+.match-teams{display:grid;grid-template-columns:1fr auto 1fr;gap:10px;align-items:center;margin:10px 0}
+.team-block{display:flex;align-items:center;gap:8px}
+.team-block.right{justify-content:flex-end;flex-direction:row-reverse}
+.team-flag{font-size:22px}
+.team-name{font-size:14px;font-weight:700}
+.score-badge{text-align:center;font-size:20px;font-weight:800;padding:7px 14px;border-radius:10px;letter-spacing:2px;min-width:84px}
+.score-upcoming{background:#f0f2f5;color:#aaa;font-size:13px;font-weight:600;letter-spacing:1px}
+.score-live{background:#ffeaea;color:#c0392b}
+.score-final{background:#eafaf1;color:#1e7e34}
+.score-extra{background:#e8f0fe;color:#1a56c4}
+/* BADGES */
+.badge{display:inline-block;font-size:9px;font-weight:700;padding:2px 7px;border-radius:20px;margin-left:5px;vertical-align:middle}
+.badge-final{background:#eafaf1;color:#1e7e34}
+.badge-live{background:#ffeaea;color:#c0392b}
+.badge-locked{background:#fff3cd;color:#856404}
+.badge-et{background:#e8f0fe;color:#1a56c4}
+.badge-pen{background:#f3e8fd;color:#7b1fa2}
+/* BET FORM */
+.bet-section{border-top:1px solid #f5f5f5;padding-top:14px;margin-top:4px}
+.bet-form{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:8px}
+.bet-label{font-size:12px;color:#666;font-weight:500}
+.score-input{width:50px;height:40px;text-align:center;font-size:20px;font-weight:700;border:2px solid #e0e0e0;border-radius:10px;background:#fafafa;transition:border 0.15s}
+.score-input:focus{outline:none;border-color:#4f86f7}
+.score-input:disabled{background:#f5f5f5;color:#ccc;cursor:not-allowed}
+.sep{font-size:20px;font-weight:700;color:#ccc}
+.pen-select{height:36px;border:2px solid #e0e0e0;border-radius:10px;padding:0 10px;font-size:12px;font-weight:600;background:#fafafa;cursor:pointer}
+.pen-select:focus{outline:none;border-color:#4f86f7}
+/* BUTTONS */
+.btn{padding:9px 18px;border-radius:10px;border:none;font-size:13px;font-weight:600;cursor:pointer;transition:all 0.15s}
+.btn-primary{background:#0a1628;color:#fff}
+.btn-primary:hover{background:#1a2e4a}
+.btn-primary:disabled{background:#ccc;cursor:not-allowed}
+.btn-secondary{background:#f0f2f5;color:#333}
+.btn-danger{background:#fce8e6;color:#c5221f}
+.btn-sm{padding:6px 14px;font-size:12px}
+.saved-msg{font-size:12px;color:#27ae60;font-weight:600}
+.locked-msg{font-size:12px;color:#f39c12;font-weight:500;margin-top:4px}
+/* BETS GRID */
+.bets-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:8px;margin-top:10px}
+.bet-card{border-radius:10px;padding:10px;border:2px solid transparent}
+.bet-card.you{border-color:#4f86f7}
+.bet-name{font-size:11px;font-weight:700;margin-bottom:4px;opacity:0.8}
+.bet-score{font-size:15px;font-weight:800}
+.bet-pts{font-size:11px;margin-top:3px;font-weight:600}
+.pts-exact{color:#1e7e34}.pts-winner{color:#4f86f7}.pts-none{color:#ccc}.pts-pending{color:#aaa}
+.hidden-note{font-size:11px;color:#aaa;font-style:italic;margin-top:8px}
+/* LEADERBOARD */
+.lb-row{display:flex;align-items:center;gap:12px;padding:13px 0;border-bottom:1px solid #f5f5f5}
+.lb-row:last-child{border-bottom:none}
+.lb-row.you{background:#f0f5ff;border-radius:10px;padding:13px 10px;margin:0 -10px}
+.lb-rank{font-size:20px;min-width:36px;text-align:center}
+.lb-emoji{font-size:26px;flex-shrink:0}
+.lb-info{flex:1}
+.lb-name{font-size:14px;font-weight:700}
+.lb-detail{font-size:11px;color:#aaa;margin-top:2px}
+.lb-pts-num{font-size:22px;font-weight:800;color:#0a1628}
+.lb-pts-label{font-size:10px;color:#aaa;text-align:right}
+.stats-row{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:14px}
+.stat-box{background:#fff;border-radius:12px;padding:14px;text-align:center;box-shadow:0 1px 3px rgba(0,0,0,0.07)}
+.stat-num{font-size:26px;font-weight:800;color:#0a1628}
+.stat-label{font-size:11px;color:#aaa;margin-top:3px}
+/* BONUS PICKS */
+.bonus-hero{border-radius:14px;padding:20px;margin-bottom:12px;color:#fff}
+.hero-dark{background:linear-gradient(135deg,#0a1628,#1a3a5c)}
+.hero-mid{background:linear-gradient(135deg,#1a3a5c,#2a5a8c)}
+.bonus-label{font-size:10px;opacity:0.6;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:6px}
+.bonus-desc{font-size:13px;opacity:0.85;line-height:1.5}
+.picker-search{width:100%;height:38px;border:2px solid #e0e0e0;border-radius:10px;padding:0 12px;font-size:14px;margin-bottom:10px;transition:border 0.15s}
+.picker-search:focus{outline:none;border-color:#4f86f7}
+.picker-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:8px;max-height:240px;overflow-y:auto;padding-right:4px}
+.player-pick{padding:10px 14px;border-radius:10px;border:2px solid #eee;cursor:pointer;font-size:13px;font-weight:500;transition:all 0.15s;background:#fff}
+.player-pick:hover{border-color:#4f86f7;background:#f0f5ff}
+.player-pick.selected{border-color:#4f86f7;background:#4f86f7;color:#fff}
+.confirm-box{margin-top:12px;padding:14px;background:#f8f9fb;border-radius:12px}
+.locked-pick{font-size:14px;padding:10px;background:#eafaf1;border-radius:10px;color:#1e7e34;font-weight:600;margin-bottom:8px}
+.teams-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:10px;margin-top:12px}
+.team-pick{padding:14px;border-radius:12px;border:2px solid #eee;cursor:pointer;font-size:13px;font-weight:600;text-align:center;transition:all 0.15s;background:#fff}
+.team-pick:hover{border-color:#4f86f7;background:#f0f5ff}
+.team-pick.selected{border-color:#4f86f7;background:#4f86f7;color:#fff}
+/* GOALSCORERS */
+.pos-section{margin-bottom:16px}
+.pos-header{display:flex;align-items:center;gap:8px;margin-bottom:8px}
+.pos-icon{font-size:20px}
+.pos-title{font-size:13px;font-weight:700}
+.pos-pts{font-size:11px;color:#888}
+.picked-player{display:flex;align-items:center;gap:10px;padding:10px;border-radius:10px;margin-bottom:6px}
+.picked-name{flex:1;font-size:13px;font-weight:600}
+.remove-btn{background:#fce8e6;color:#c5221f;border:none;border-radius:6px;padding:4px 10px;cursor:pointer;font-size:11px;font-weight:600}
+/* RULES */
+.how-row{display:flex;align-items:flex-start;gap:14px;padding:13px 0;border-bottom:1px solid #f5f5f5}
+.how-row:last-child{border-bottom:none}
+.how-icon{font-size:26px;width:40px;text-align:center;flex-shrink:0}
+.how-title{font-size:14px;font-weight:700;margin-bottom:3px}
+.how-desc{font-size:12px;color:#666;line-height:1.5}
+.pts-pill{display:inline-block;font-size:11px;font-weight:700;padding:2px 8px;border-radius:20px;margin-left:4px}
+.pill-green{background:#eafaf1;color:#1e7e34}
+.pill-blue{background:#e8f0fe;color:#1a56c4}
+.pill-gold{background:#fef7e0;color:#b06000}
+.pill-red{background:#fce8e6;color:#c5221f}
+/* ADMIN */
+.admin-section{margin-bottom:16px}
+.admin-label{font-size:12px;font-weight:600;margin-bottom:6px;color:#444}
+.admin-input{width:100%;height:38px;border:1.5px solid #ddd;border-radius:10px;padding:0 12px;font-size:13px;margin-bottom:8px}
+.admin-input:focus{outline:none;border-color:#4f86f7}
+/* MODAL */
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.6);display:flex;align-items:center;justify-content:center;z-index:999;padding:16px}
+.modal{background:#fff;border-radius:18px;padding:32px 28px;width:100%;max-width:420px}
+.modal-title{font-size:22px;font-weight:800;margin-bottom:6px;text-align:center}
+.modal-sub{font-size:14px;color:#666;margin-bottom:22px;text-align:center;line-height:1.5}
+.modal-input{width:100%;height:46px;border:2px solid #e0e0e0;border-radius:12px;font-size:17px;text-align:center;margin-bottom:12px;font-weight:600}
+.modal-input:focus{outline:none;border-color:#4f86f7}
+.emoji-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;margin:12px 0}
+.emoji-opt{font-size:26px;padding:8px;border-radius:10px;cursor:pointer;text-align:center;border:2px solid transparent;transition:all 0.15s}
+.emoji-opt:hover{background:#f0f5ff}
+.emoji-opt.selected{border-color:#4f86f7;background:#f0f5ff}
+.agree-box{display:flex;align-items:flex-start;gap:10px;margin-bottom:14px;background:#fff8e6;border-radius:10px;padding:12px}
+.agree-box label{font-size:13px;color:#555;cursor:pointer;line-height:1.4}
+.tab-btns{display:flex;gap:8px;margin-bottom:18px}
+.tab-btn{flex:1;padding:10px;border:2px solid #e0e0e0;border-radius:10px;font-size:13px;font-weight:600;cursor:pointer;background:#fff;color:#666;transition:all 0.15s}
+.tab-btn.active{border-color:#0a1628;background:#0a1628;color:#fff}
+.error-msg{font-size:12px;color:#c5221f;margin-bottom:10px;text-align:center;font-weight:500}
+/* TOAST */
+.toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:#0a1628;color:#fff;padding:10px 24px;border-radius:30px;font-size:13px;font-weight:600;opacity:0;transition:opacity 0.3s;z-index:9999;pointer-events:none;white-space:nowrap}
+.toast.show{opacity:1}
+.empty-state{text-align:center;padding:40px 20px;color:#aaa;font-size:14px}
+.empty-icon{font-size:40px;margin-bottom:12px}
+</style>
+</head>
+<body>
+
+<!-- LOGIN MODAL -->
+<div id="login-modal" class="modal-overlay">
+  <div class="modal">
+    <div style="font-size:44px;text-align:center;margin-bottom:12px">⚽</div>
+    <div class="modal-title">WC 2026 Predictions</div>
+    <div class="modal-sub">ORSEN Team Competition</div>
+    <div class="tab-btns">
+      <button class="tab-btn active" id="btn-register" onclick="switchAuthTab('register')">Create account</button>
+      <button class="tab-btn" id="btn-login" onclick="switchAuthTab('login')">Sign in</button>
+    </div>
+    <div id="error-msg" class="error-msg" style="display:none"></div>
+
+    <!-- REGISTER -->
+    <div id="register-form">
+      <input class="modal-input" type="text" id="reg-username" placeholder="Your name or nickname" maxlength="20"/>
+      <input class="modal-input" type="password" id="reg-pin" placeholder="Create a 4-digit PIN" maxlength="4" inputmode="numeric"/>
+      <div style="font-size:12px;font-weight:600;color:#444;margin-bottom:8px">Pick your avatar:</div>
+      <div class="emoji-grid" id="emoji-grid"></div>
+      <div class="agree-box">
+        <input type="checkbox" id="agree-check" style="margin-top:2px;width:18px;height:18px;flex-shrink:0;cursor:pointer"/>
+        <label for="agree-check">By participating in this competition, I agree to pay <strong>10 CHF to Océane</strong> 💸</label>
+      </div>
+      <button class="btn btn-primary" style="width:100%;height:46px;font-size:15px" onclick="register()">Create account →</button>
+    </div>
+
+    <!-- LOGIN -->
+    <div id="login-form" style="display:none">
+      <input class="modal-input" type="text" id="login-username" placeholder="Your name or nickname" maxlength="20"/>
+      <input class="modal-input" type="password" id="login-pin" placeholder="Your 4-digit PIN" maxlength="4" inputmode="numeric"/>
+      <button class="btn btn-primary" style="width:100%;height:46px;font-size:15px" onclick="login()">Sign in →</button>
+    </div>
+  </div>
+</div>
+
+<!-- ADMIN MODAL -->
+<div id="admin-modal" class="modal-overlay" style="display:none">
+  <div class="modal" style="max-width:500px;max-height:90vh;overflow-y:auto">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px">
+      <div class="modal-title" style="font-size:18px;margin:0">🔐 Admin Panel</div>
+      <button onclick="closeAdmin()" style="background:none;border:none;font-size:20px;cursor:pointer;color:#aaa">✕</button>
+    </div>
+    <div id="admin-content"></div>
+  </div>
+</div>
+
+<!-- APP -->
+<div id="app" style="display:none">
+  <div class="topbar">
+    <div>
+      <div class="topbar-title">⚽ WC 2026 — ORSEN</div>
+      <div class="topbar-sub" id="topbar-sub">Loading...</div>
+    </div>
+    <div class="user-chip" onclick="showUserMenu()">
+      <span id="user-emoji-display" style="font-size:24px"></span>
+      <span id="user-name-display" style="font-size:13px;font-weight:600"></span>
+    </div>
+  </div>
+  <div class="tabs-wrap">
+    <div class="tabs" id="main-tabs">
+      <button class="tab active" onclick="showTab('upcoming')">🗓 Upcoming</button>
+      <button class="tab" onclick="showTab('finished')">✅ Finished</button>
+      <button class="tab" onclick="showTab('leaderboard')">🏆 Leaderboard</button>
+      <button class="tab" onclick="showTab('topscorer')">⭐ Top Scorer</button>
+      <button class="tab" onclick="showTab('goalscorers')">⚽ Goalscorers</button>
+      <button class="tab" onclick="showTab('finalists')">🥈 Finalists</button>
+      <button class="tab" onclick="showTab('wcwinner')">🏆 WC Winner</button>
+      <button class="tab" onclick="showTab('rules')">📋 Rules</button>
+    </div>
+  </div>
+  <div class="container">
+    <div id="tab-upcoming"></div>
+    <div id="tab-finished" style="display:none"></div>
+    <div id="tab-leaderboard" style="display:none"></div>
+    <div id="tab-topscorer" style="display:none"></div>
+    <div id="tab-goalscorers" style="display:none"></div>
+    <div id="tab-finalists" style="display:none"></div>
+    <div id="tab-wcwinner" style="display:none"></div>
+    <div id="tab-rules" style="display:none"></div>
+  </div>
+</div>
+
+<div id="toast" class="toast"></div>
+
+<script>
+// ============ CONSTANTS ============
+const EMOJIS = ['⚽','🏆','🦁','🐯','🦊','🐺','🦅','🦋','🌟','🔥','💫','⚡','🎯','🏅','🎪','🎨','🚀','🌈','💎','🦄','🐉','🦸','🎭','🎸'];
+const FLAGS = {
+  'Mexico':'🇲🇽','South Africa':'🇿🇦','South Korea':'🇰🇷','Czechia':'🇨🇿','Spain':'🇪🇸',
+  'Curaçao':'🇨🇼','Japan':'🇯🇵','Germany':'🇩🇪','USA':'🇺🇸','Panama':'🇵🇦',
+  'Uruguay':'🇺🇾','Senegal':'🇸🇳','France':'🇫🇷','Algeria':'🇩🇿','Argentina':'🇦🇷',
+  'Iraq':'🇮🇶','Austria':'🇦🇹','Scotland':'🏴󠁧󠁢󠁳󠁣󠁴󠁿','Brazil':'🇧🇷','Norway':'🇳🇴',
+  'Portugal':'🇵🇹','Kuwait':'🇰🇼','Colombia':'🇨🇴','Romania':'🇷🇴','England':'🏴󠁧󠁢󠁥󠁮󠁧󠁿',
+  'Serbia':'🇷🇸','Netherlands':'🇳🇱','New Zealand':'🇳🇿','Morocco':'🇲🇦','Ukraine':'🇺🇦',
+  'Belgium':'🇧🇪','Bolivia':'🇧🇴','Italy':'🇮🇹','Ecuador':'🇪🇨','Canada':'🇨🇦',
+  'Saudi Arabia':'🇸🇦','Switzerland':'🇨🇭','Cameroon':'🇨🇲','Turkey':'🇹🇷','Cape Verde':'🇨🇻',
+  'Ghana':'🇬🇭','Jordan':'🇯🇴','Croatia':'🇭🇷','DR Congo':'🇨🇩','Iran':'🇮🇷',
+  'Paraguay':'🇵🇾','Australia':'🇦🇺','Ivory Coast':'🇨🇮','Denmark':'🇩🇰','Nigeria':'🇳🇬',
+  'Poland':'🇵🇱','Qatar':'🇶🇦','Bosnia and Herzegovina':'🇧🇦','Uzbekistan':'🇺🇿','Chile':'🇨🇱',
+  'TBD':'🏳️'
+};
+const POSITION_INFO = {
+  'Attacker':  {icon:'⚡', pts:6,  unit:'per goal',        label:'Attacker'},
+  'Midfielder':{icon:'🎯', pts:10, unit:'per goal',        label:'Midfielder'},
+  'Defender':  {icon:'🛡️', pts:24, unit:'per goal',        label:'Defender'},
+  'Goalkeeper':{icon:'🧤', pts:7,  unit:'per clean sheet', label:'Goalkeeper'},
+};
+const STAGE_POINTS = {
+  'GROUP_STAGE':       {exact:7,  winner:3},
+  'ROUND_OF_16':       {exact:9,  winner:4},
+  'LAST_16':           {exact:9,  winner:4},
+  'QUARTER_FINALS':    {exact:9,  winner:4},
+  'SEMI_FINALS':       {exact:11, winner:5},
+  'FINAL':             {exact:11, winner:5},
+};
+
+// ============ STATE ============
+let currentUser = null;
+let currentEmoji = null;
+let currentTab = 'upcoming';
+let state = {players:{},bets:{},topScorerBets:{},topScorerWinner:null,finalistBets:{},finalists:null,wcWinnerBets:{},wcWinner:null,goalScorerBets:{},goalScorerStats:{},scores:{},matches:[],scorerCandidates:[]};
+let pendingTopScorer = null;
+let pendingWCWinner = null;
+let pendingFinalists = [];
+
+// ============ HELPERS ============
+function flag(team){ return FLAGS[team]||'🏳️'; }
+function stagePoints(stage){ 
+  const s=(stage||'').toUpperCase();
+  if(s.includes('FINAL')&&!s.includes('SEMI')&&!s.includes('QUARTER')) return STAGE_POINTS['FINAL'];
+  if(s.includes('SEMI')) return STAGE_POINTS['SEMI_FINALS'];
+  if(s.includes('QUARTER')) return STAGE_POINTS['QUARTER_FINALS'];
+  if(s.includes('16')||s.includes('LAST_16')) return STAGE_POINTS['ROUND_OF_16'];
+  return STAGE_POINTS['GROUP_STAGE'];
+}
+function isKnockout(stage){ const s=(stage||'').toUpperCase(); return s.includes('FINAL')||s.includes('SEMI')||s.includes('QUARTER')||s.includes('16'); }
+function getScore(matchId){ return state.scores[matchId]||null; }
+function isMatchLocked(m){ if(!m||!m.date) return false; return Date.now() >= new Date(m.date).getTime(); }
+function isMatchFinished(m){ const s=getScore(m.id); return m.status==='FINISHED'||(s&&s.status==='FINISHED'); }
+function isMatchLive(m){ const s=getScore(m.id); return m.status==='IN_PLAY'||m.status==='PAUSED'||(s&&s.status==='IN_PLAY'); }
+
+function formatMatchDate(dateStr){
+  if(!dateStr) return 'TBD';
+  const d = new Date(dateStr);
+  const date = d.toLocaleDateString('en-GB',{weekday:'short',day:'numeric',month:'short'});
+  const ch = d.toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit',timeZone:'Europe/Zurich'});
+  const uk = d.toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit',timeZone:'Europe/London'});
+  const us = d.toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit',timeZone:'America/New_York'});
+  return {date, times:`CH ${ch} · UK ${uk} · US ${us}`};
+}
+
+function formatGroup(g){ if(!g) return 'Knockout'; return g.replace('GROUP_','Group ').replace(/_/g,' '); }
+
+function getPoints(bet, scoreData, stage){
+  if(!scoreData||!scoreData.regular) return null;
+  const [r1,r2] = scoreData.regular;
+  const [b1,b2] = bet;
+  const sp = stagePoints(stage);
+  if(b1===r1 && b2===r2){
+    // For knockout with pen winner prediction
+    if(isKnockout(stage) && r1===r2 && bet[2] && scoreData.penWinner){
+      if(bet[2]===scoreData.penWinner) return{pts:sp.exact+2,type:'exact',bonus:true};
+      return{pts:sp.exact,type:'exact'};
+    }
+    return{pts:sp.exact,type:'exact'};
+  }
+  const rw = r1>r2?'home':r1<r2?'away':'draw';
+  const bw = b1>b2?'home':b1<b2?'away':'draw';
+  if(rw===bw){
+    if(isKnockout(stage) && r1===r2 && bet[2] && scoreData.penWinner){
+      if(bet[2]===scoreData.penWinner) return{pts:sp.winner+2,type:'winner',bonus:true};
+      return{pts:sp.winner,type:'winner'};
+    }
+    return{pts:sp.winner,type:'winner'};
+  }
+  return{pts:0,type:'none'};
+}
+
+function calcGoalscorerPts(player){
+  const picks = state.goalScorerBets?.[player]||[];
+  let pts=0;
+  picks.forEach(p=>{
+    const stats = state.goalScorerStats?.[p.name]||{};
+    if(p.position==='Goalkeeper') pts+=(stats.cleanSheets||0)*7;
+    else pts+=(stats.goals||0)*POSITION_INFO[p.position].pts;
+  });
+  return pts;
+}
+
+function calcTotal(player){
+  let pts=0, exact=0, winner=0;
+  (state.matches||[]).forEach(m=>{
+    const bet=state.bets[m.id]?.[player];
+    const sc=getScore(m.id);
+    if(!bet||!sc) return;
+    const r=getPoints(bet,sc,m.stage);
+    if(!r) return;
+    pts+=r.pts; if(r.type==='exact') exact++; else if(r.type==='winner') winner++;
+  });
+  const ts=state.topScorerBets?.[player];
+  if(ts&&state.topScorerWinner&&ts===state.topScorerWinner) pts+=10;
+  const fp=state.finalistBets?.[player]||[];
+  if(state.finalists) fp.forEach(t=>{ if(state.finalists.includes(t)) pts+=12; });
+  const wp=state.wcWinnerBets?.[player];
+  if(wp&&state.wcWinner&&wp===state.wcWinner) pts+=25;
+  pts+=calcGoalscorerPts(player);
+  return{pts,exact,winner};
+}
+
+// ============ API ============
+async function apiCall(endpoint, method='GET', body=null){
+  const opts={method,headers:{'Content-Type':'application/json'}};
+  if(body) opts.body=JSON.stringify(body);
+  const r=await fetch(endpoint,opts);
+  return r.json();
+}
+async function loadState(){ try{ const r=await apiCall('/api/state'); state=r; }catch(e){} }
+async function saveData(data){ try{ await apiCall('/api/save','POST',data); }catch(e){} }
+
+// ============ AUTH ============
+function switchAuthTab(tab){
+  document.getElementById('register-form').style.display=tab==='register'?'block':'none';
+  document.getElementById('login-form').style.display=tab==='login'?'block':'none';
+  document.getElementById('btn-register').classList.toggle('active',tab==='register');
+  document.getElementById('btn-login').classList.toggle('active',tab==='login');
+  document.getElementById('error-msg').style.display='none';
+}
+
+function buildEmojiGrid(selectedEmoji=null){
+  const grid=document.getElementById('emoji-grid');
+  if(!grid) return;
+  grid.innerHTML=EMOJIS.map(e=>`<div class="emoji-opt${e===selectedEmoji?' selected':''}" onclick="selectEmoji('${e}')">${e}</div>`).join('');
+}
+function selectEmoji(e){ currentEmoji=e; buildEmojiGrid(e); }
+
+async function register(){
+  const username=document.getElementById('reg-username').value.trim();
+  const pin=document.getElementById('reg-pin').value.trim();
+  const errEl=document.getElementById('error-msg');
+  errEl.style.display='none';
+  if(!username||username.length<2){errEl.textContent='Please enter a name (min 2 chars)';errEl.style.display='block';return;}
+  if(!pin||pin.length!==4||isNaN(pin)){errEl.textContent='Please enter a valid 4-digit PIN';errEl.style.display='block';return;}
+  if(!currentEmoji){errEl.textContent='Please pick an avatar emoji!';errEl.style.display='block';return;}
+  if(!document.getElementById('agree-check').checked){errEl.textContent='You must agree to pay Océane 10 CHF 💸';errEl.style.display='block';return;}
+  try{
+    const r=await apiCall('/api/register','POST',{username,pin,emoji:currentEmoji});
+    if(r.error){errEl.textContent=r.error==='Username already taken'?'This name is taken — try another!':r.error;errEl.style.display='block';return;}
+    await finishLogin(username,currentEmoji);
+  }catch(e){errEl.textContent='Connection error, try again';errEl.style.display='block';}
+}
+
+async function login(){
+  const username=document.getElementById('login-username').value.trim();
+  const pin=document.getElementById('login-pin').value.trim();
+  const errEl=document.getElementById('error-msg');
+  errEl.style.display='none';
+  if(!username||!pin){errEl.textContent='Please fill in all fields';errEl.style.display='block';return;}
+  try{
+    const r=await apiCall('/api/login','POST',{username,pin});
+    if(r.error){errEl.textContent=r.error==='User not found'?'Name not found — try registering':r.error==='Wrong PIN'?'Wrong PIN, try again':r.error;errEl.style.display='block';return;}
+    await finishLogin(username,r.emoji);
+  }catch(e){errEl.textContent='Connection error, try again';errEl.style.display='block';}
+}
+
+async function finishLogin(username,emoji){
+  currentUser=username; currentEmoji=emoji;
+  localStorage.setItem('wc2026_user',username);
+  localStorage.setItem('wc2026_emoji',emoji);
+  document.getElementById('login-modal').style.display='none';
+  document.getElementById('app').style.display='block';
+  await loadState();
+  initApp();
+}
+
+// ============ APP INIT ============
+function initApp(){
+  document.getElementById('user-emoji-display').textContent=currentEmoji||'⚽';
+  document.getElementById('user-name-display').textContent=currentUser;
+  document.getElementById('topbar-sub').textContent=Object.keys(state.players).length+' players competing';
+  renderCurrentTab();
+  setInterval(async()=>{ await loadState(); document.getElementById('topbar-sub').textContent=Object.keys(state.players).length+' players competing'; renderCurrentTab(); },30000);
+}
+
+function showUserMenu(){
+  const isAdmin=prompt('Enter admin password to access admin panel (or cancel for nothing):');
+  if(isAdmin==='ORSEN') openAdmin();
+}
+
+// ============ TABS ============
+function showTab(t){
+  currentTab=t;
+  document.querySelectorAll('.tab').forEach((el,i)=>{
+    const tabs=['upcoming','finished','leaderboard','topscorer','goalscorers','finalists','wcwinner','rules'];
+    el.classList.toggle('active',tabs[i]===t);
+  });
+  ['upcoming','finished','leaderboard','topscorer','goalscorers','finalists','wcwinner','rules'].forEach(x=>{
+    document.getElementById('tab-'+x).style.display=x===t?'block':'none';
+  });
+  renderCurrentTab();
+}
+
+function renderCurrentTab(){
+  if(currentTab==='upcoming') renderMatches(false);
+  else if(currentTab==='finished') renderMatches(true);
+  else if(currentTab==='leaderboard') renderLeaderboard();
+  else if(currentTab==='topscorer') renderTopScorer();
+  else if(currentTab==='goalscorers') renderGoalscorers();
+  else if(currentTab==='finalists') renderFinalists();
+  else if(currentTab==='wcwinner') renderWCWinner();
+  else if(currentTab==='rules') renderRules();
+}
+
+// ============ MATCHES ============
+function renderMatches(showFinished){
+  const el=document.getElementById(showFinished?'tab-finished':'tab-upcoming');
+  const matches=(state.matches||[]).filter(m=>showFinished?isMatchFinished(m):!isMatchFinished(m)).sort((a,b)=>showFinished?new Date(b.date)-new Date(a.date):new Date(a.date)-new Date(b.date));
+  if(!matches.length){
+    el.innerHTML=`<div class="empty-state"><div class="empty-icon">${showFinished?'✅':'⏳'}</div>${showFinished?'No finished matches yet':'No upcoming matches'}</div>`;
+    return;
+  }
+  const players=Object.keys(state.players);
+  el.innerHTML=matches.map(m=>renderMatchCard(m,players)).join('');
+}
+
+function renderMatchCard(m, players){
+  const sc=getScore(m.id);
+  const myBet=state.bets[m.id]?.[currentUser]||null;
+  const locked=isMatchLocked(m), finished=isMatchFinished(m), live=isMatchLive(m);
+  const {date,times}=formatMatchDate(m.date);
+  const knockout=isKnockout(m.stage);
+
+  let scoreBadge='';
+  if(finished&&sc){
+    const [r1,r2]=sc.regular;
+    let cls='score-final', suffix='';
+    if(sc.extra) suffix=` <span style="font-size:10px;opacity:0.7">(AET)</span>`;
+    if(sc.penWinner||sc.penalties) suffix=` <span style="font-size:10px;opacity:0.7">(Pen)</span>`;
+    scoreBadge=`<div class="${cls} score-badge">${r1} – ${r2}${suffix}</div>`;
+  } else if(live&&sc){
+    const [r1,r2]=sc.regular;
+    scoreBadge=`<div class="score-live score-badge">${r1} – ${r2}</div>`;
+  } else {
+    const {times:t}=formatMatchDate(m.date);
+    const chTime=t.split('·')[0].replace('CH','').trim();
+    scoreBadge=`<div class="score-upcoming score-badge">${chTime}</div>`;
+  }
+
+  let statusBadge='';
+  if(finished) statusBadge='<span class="badge badge-final">Final</span>';
+  else if(live) statusBadge='<span class="badge badge-live">LIVE</span>';
+  else if(locked) statusBadge='<span class="badge badge-locked">Locked</span>';
+  if(sc?.extra&&finished) statusBadge+='<span class="badge badge-et">AET</span>';
+  if((sc?.penWinner||sc?.penalties)&&finished) statusBadge+='<span class="badge badge-pen">Penalties</span>';
+
+  // Bet form
+  let betSection='';
+  if(!locked&&!finished){
+    const penField=knockout?`<select class="pen-select" id="pen-${m.id}"><option value="">If draw → who wins?</option><option value="home">${m.team1}</option><option value="away">${m.team2}</option></select>`:'';
+    betSection=`<div class="bet-form">
+      <span class="bet-label">Your prediction:</span>
+      <input class="score-input" type="number" id="s1-${m.id}" min="0" max="20" value="${myBet?myBet[0]:''}" placeholder="0" ${myBet?'disabled':''}/>
+      <span class="sep">–</span>
+      <input class="score-input" type="number" id="s2-${m.id}" min="0" max="20" value="${myBet?myBet[1]:''}" placeholder="0" ${myBet?'disabled':''}/>
+      ${!myBet?penField:''}
+      ${!myBet?`<button class="btn btn-primary btn-sm" onclick="placeBet('${m.id}','${m.stage}')">Save prediction</button>`:'<span class="saved-msg">✓ Prediction saved!</span>'}
+    </div>
+    ${myBet&&knockout&&myBet[2]?`<div style="font-size:11px;color:#888">If draw: ${myBet[2]==='home'?m.team1:m.team2} wins</div>`:''}`;
+  } else if(locked&&!finished){
+    betSection=myBet?`<div class="locked-msg">🔒 Your prediction: <strong>${myBet[0]} – ${myBet[1]}</strong>${myBet[2]?' ('+( myBet[2]==='home'?m.team1:m.team2)+' if draw)':''}</div>`:`<div class="locked-msg">🔒 Predictions closed</div>`;
+  }
+
+  // Bets reveal
+  let betsHtml='';
+  if(finished||locked){
+    const cards=players.map(p=>{
+      const bet=state.bets[m.id]?.[p];
+      const isYou=p===currentUser;
+      const pData=state.players[p];
+      const emoji=pData?.emoji||'⚽';
+      if(!bet) return`<div class="bet-card${isYou?' you':''}" style="background:#f8f9fb"><div class="bet-name" style="color:#bbb">${emoji} ${p}${isYou?' (you)':''}</div><div class="bet-score" style="color:#ddd">–</div><div class="bet-pts pts-none">no pred.</div></div>`;
+      const res=(finished&&sc)?getPoints(bet,sc,m.stage):null;
+      let ptsTxt='pending',ptsClass='pts-pending';
+      if(res){
+        if(res.type==='exact'){ptsTxt=`+${res.pts} pts ✓${res.bonus?' 🎯':''}`;ptsClass='pts-exact';}
+        else if(res.type==='winner'){ptsTxt=`+${res.pts} pt${res.bonus?' 🎯':''}`;ptsClass='pts-winner';}
+        else{ptsTxt='0 pts ✗';ptsClass='pts-none';}
+      }
+      return`<div class="bet-card${isYou?' you':''}" style="background:${colorFor(p).bg}">
+        <div class="bet-name" style="color:${colorFor(p).text}">${emoji} ${p}${isYou?' (you)':''}</div>
+        <div class="bet-score" style="color:${colorFor(p).text}">${bet[0]} – ${bet[1]}</div>
+        <div class="bet-pts ${ptsClass}">${ptsTxt}</div>
+      </div>`;
+    }).join('');
+    const cnt=players.filter(p=>state.bets[m.id]?.[p]).length;
+    betsHtml=`<div style="margin-top:14px"><div class="section-title">All predictions${!finished?` (${cnt} placed — revealed at kick-off)`:''}</div><div class="bets-grid">${cards}</div></div>`;
+  } else {
+    const cnt=players.filter(p=>state.bets[m.id]?.[p]).length;
+    if(cnt>0) betsHtml=`<div class="hidden-note">👁 ${cnt} prediction${cnt!==1?'s':''} placed — revealed at kick-off</div>`;
+  }
+
+  return`<div class="card">
+    <div class="match-meta">
+      <div><span class="match-stage">${formatGroup(m.group)}</span>${statusBadge}</div>
+      <div class="match-date">${date}</div>
+    </div>
+    <div class="match-timezones">${times}</div>
+    <div class="match-teams">
+      <div class="team-block"><span class="team-flag">${flag(m.team1)}</span><span class="team-name">${m.team1}</span></div>
+      <div>${scoreBadge}</div>
+      <div class="team-block right"><span class="team-name">${m.team2}</span><span class="team-flag">${flag(m.team2)}</span></div>
+    </div>
+    <div class="bet-section">${betSection}${betsHtml}</div>
+  </div>`;
+}
+
+function placeBet(matchId, stage){
+  const m=(state.matches||[]).find(x=>x.id===matchId);
+  if(!m||isMatchLocked(m)){showToast('Predictions are closed!');return;}
+  if(state.bets[matchId]?.[currentUser]){showToast('Already saved!');return;}
+  const s1=parseInt(document.getElementById('s1-'+matchId)?.value);
+  const s2=parseInt(document.getElementById('s2-'+matchId)?.value);
+  if(isNaN(s1)||isNaN(s2)||s1<0||s2<0){showToast('Please enter valid scores (0 or more)');return;}
+  const penEl=document.getElementById('pen-'+matchId);
+  const penWinner=penEl?penEl.value||null:null;
+  if(!state.bets[matchId]) state.bets[matchId]={};
+  state.bets[matchId][currentUser]=[s1,s2,penWinner];
+  saveData({bets:state.bets});
+  showToast('Prediction saved! 🎯');
+  renderMatches(false);
+}
+
+// ============ LEADERBOARD ============
+function renderLeaderboard(){
+  const el=document.getElementById('tab-leaderboard');
+  const players=Object.keys(state.players);
+  if(!players.length){el.innerHTML='<div class="empty-state"><div class="empty-icon">🏆</div>No players yet</div>';return;}
+  const sorted=players.map(p=>({name:p,...calcTotal(p),emoji:state.players[p]?.emoji||'⚽'})).sort((a,b)=>b.pts-a.pts||(b.exact-a.exact));
+  const medals=['🥇','🥈','🥉'];
+  const finished=(state.matches||[]).filter(m=>isMatchFinished(m)).length;
+  const totalBets=players.reduce((s,p)=>s+(state.matches||[]).filter(m=>state.bets[m.id]?.[p]).length,0);
+  const rows=sorted.map((p,i)=>{
+    const isYou=p.name===currentUser;
+    const c=colorFor(p.name);
+    const gspts=calcGoalscorerPts(p.name);
+    return`<div class="lb-row${isYou?' you':''}">
+      <div class="lb-rank">${medals[i]||(i+1)}</div>
+      <div class="lb-emoji">${p.emoji}</div>
+      <div class="lb-info">
+        <div class="lb-name">${p.name}${isYou?' <span style="font-size:11px;color:#4f86f7">(you)</span>':''}</div>
+        <div class="lb-detail">${p.exact} exact · ${p.winner} correct winner${gspts>0?' · ⚽ '+gspts+' goalscorer pts':''}${state.wcWinnerBets?.[p.name]===state.wcWinner&&state.wcWinner?' · 🏆 WC winner':''}</div>
+      </div>
+      <div style="text-align:right">
+        <div class="lb-pts-num">${p.pts}</div>
+        <div class="lb-pts-label">pts</div>
+      </div>
+    </div>`;
+  }).join('');
+  el.innerHTML=`<div class="stats-row">
+    <div class="stat-box"><div class="stat-num">${players.length}</div><div class="stat-label">Players</div></div>
+    <div class="stat-box"><div class="stat-num">${finished}</div><div class="stat-label">Matches played</div></div>
+    <div class="stat-box"><div class="stat-num">${totalBets}</div><div class="stat-label">Predictions</div></div>
+  </div>
+  <div class="card"><div class="section-title">Rankings</div>${rows}</div>`;
+}
+
+// ============ TOP SCORER ============
+function renderTopScorer(){
+  const el=document.getElementById('tab-topscorer');
+  const myPick=state.topScorerBets?.[currentUser]||null;
+  const winner=state.topScorerWinner||null;
+  const tournamentStarted=(state.matches||[]).some(m=>isMatchLocked(m));
+  const candidates=state.scorerCandidates?.length>10?state.scorerCandidates.map(p=>typeof p==='string'?p:p.name):FALLBACK_SCORERS;
+  const allPlayers=Object.keys(state.players);
+  const everyonePicked=allPlayers.length>0&&allPlayers.every(p=>state.topScorerBets?.[p]);
+
+  let heroHtml=winner
+    ?`<div class="bonus-hero hero-dark"><div class="bonus-label">⭐ Tournament Top Scorer</div><div style="font-size:22px;font-weight:800;margin:6px 0">${winner}</div><div class="bonus-desc">Players who picked correctly earn +10 pts!</div></div>`
+    :`<div class="bonus-hero hero-dark"><div class="bonus-label">⭐ Top Scorer — +10 bonus points</div><div class="bonus-desc">Pick the player who will score the most goals in the tournament. ${tournamentStarted?'<strong style="color:#f39c12">Picking is now locked!</strong>':'Must be picked before the first match!'}</div></div>`;
+
+  let pickerHtml='';
+  if(!tournamentStarted&&!winner){
+    if(myPick){
+      pickerHtml=`<div class="card"><div class="locked-pick">✓ Your pick: ${myPick}</div><div style="font-size:13px;color:#aaa">Locked in! Good luck 🤞</div></div>`;
+    } else {
+      pickerHtml=`<div class="card">
+        <div class="section-title">Pick the top scorer</div>
+        <input class="picker-search" type="text" placeholder="Search player..." oninput="filterTopScorers(this.value)"/>
+        <div class="picker-grid" id="ts-grid">
+          ${candidates.map(p=>`<div class="player-pick${pendingTopScorer===p?' selected':''}" onclick="selectTopScorer('${p.replace(/'/g,"\\'")}')">${p}</div>`).join('')}
+        </div>
+        ${pendingTopScorer?`<div class="confirm-box">
+          <div style="font-size:14px;font-weight:600;margin-bottom:10px">Confirm: <strong>${pendingTopScorer}</strong></div>
+          <div style="display:flex;gap:8px">
+            <button class="btn btn-primary btn-sm" onclick="confirmTopScorer()">✓ Confirm</button>
+            <button class="btn btn-secondary btn-sm" onclick="cancelTopScorer()">Cancel</button>
+          </div>
+        </div>`:''}
+      </div>`;
+    }
+  }
+
+  let picksHtml='';
+  if(everyonePicked||tournamentStarted){
+    picksHtml=`<div class="card"><div class="section-title">Everyone's picks</div><div class="bets-grid">
+      ${allPlayers.map(p=>{
+        const pick=state.topScorerBets?.[p];
+        const isYou=p===currentUser;
+        const c=colorFor(p);
+        const correct=winner&&pick===winner;
+        const emoji=state.players[p]?.emoji||'⚽';
+        return`<div class="bet-card${isYou?' you':''}" style="background:${c.bg}">
+          <div class="bet-name" style="color:${c.text}">${emoji} ${p}${isYou?' (you)':''}</div>
+          <div class="bet-score" style="font-size:12px;color:${c.text}">${pick||'–'}</div>
+          ${winner?`<div class="bet-pts ${correct?'pts-exact':'pts-none'}">${correct?'+10 pts ✓':'0 pts'}</div>`:'<div class="bet-pts pts-pending">pending</div>'}
+        </div>`;
+      }).join('')}
+    </div></div>`;
+  } else {
+    const cnt=allPlayers.filter(p=>state.topScorerBets?.[p]).length;
+    picksHtml=`<div class="card"><div style="color:#aaa;text-align:center;padding:16px;font-size:13px">👁 ${cnt}/${allPlayers.length} picked — revealed when everyone is done!</div></div>`;
+  }
+  el.innerHTML=heroHtml+pickerHtml+picksHtml;
+}
+
+function filterTopScorers(q){
+  const candidates=state.scorerCandidates?.length>10?state.scorerCandidates.map(p=>typeof p==='string'?p:p.name):FALLBACK_SCORERS;
+  const grid=document.getElementById('ts-grid');
+  if(!grid) return;
+  grid.innerHTML=candidates.filter(p=>p.toLowerCase().includes(q.toLowerCase())).map(p=>`<div class="player-pick${pendingTopScorer===p?' selected':''}" onclick="selectTopScorer('${p.replace(/'/g,"\\'")}')">${p}</div>`).join('');
+}
+function selectTopScorer(name){ if(isMatchLocked(state.matches?.[0])){showToast('Picking closed!');return;} pendingTopScorer=name; renderTopScorer(); }
+function confirmTopScorer(){ if(!pendingTopScorer) return; if(!state.topScorerBets) state.topScorerBets={}; state.topScorerBets[currentUser]=pendingTopScorer; pendingTopScorer=null; saveData({topScorerBets:state.topScorerBets}); showToast('Top scorer confirmed! ⭐'); renderTopScorer(); }
+function cancelTopScorer(){ pendingTopScorer=null; renderTopScorer(); }
+
+// ============ GOALSCORERS ============
+function renderGoalscorers(){
+  const el=document.getElementById('tab-goalscorers');
+  const myPicks=state.goalScorerBets?.[currentUser]||[];
+  const tournamentStarted=(state.matches||[]).some(m=>isMatchLocked(m));
+  const allPlayers=Object.keys(state.players);
+  const everyonePicked=allPlayers.length>0&&allPlayers.every(p=>(state.goalScorerBets?.[p]||[]).length===4);
+  const candidates=state.scorerCandidates?.length>10?state.scorerCandidates:FALLBACK_SCORERS_WITH_POS;
+
+  let heroHtml=`<div class="bonus-hero hero-dark">
+    <div class="bonus-label">⚽ Goalscorer Picks — 4 players</div>
+    <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin:10px 0">
+      ${Object.entries(POSITION_INFO).map(([pos,info])=>`<div style="background:rgba(255,255,255,0.1);border-radius:8px;padding:8px">
+        <div>${info.icon} <strong>${info.label}</strong></div>
+        <div style="font-size:11px;opacity:0.75">+${info.pts} pts ${info.unit}</div>
+      </div>`).join('')}
+    </div>
+    <div class="bonus-desc">${tournamentStarted?'<strong style="color:#f39c12">Picking is now locked!</strong>':'Pick 1 player per position before the tournament starts.'}</div>
+  </div>`;
+
+  let pickerHtml='';
+  if(!tournamentStarted){
+    if(myPicks.length===4){
+      pickerHtml=`<div class="card">
+        <div style="font-size:14px;font-weight:600;color:#1e7e34;margin-bottom:12px">✓ Your picks confirmed!</div>
+        ${myPicks.map(p=>`<div class="picked-player" style="background:${posColor(p.position)}">
+          <span style="font-size:20px">${POSITION_INFO[p.position]?.icon}</span>
+          <div class="picked-name">${p.name}</div>
+          <div style="font-size:11px;color:#888">${p.position}</div>
+        </div>`).join('')}
+        <div style="font-size:13px;color:#aaa;margin-top:8px">Picks locked in! Good luck 🤞</div>
+      </div>`;
+    } else {
+      const remaining=Object.keys(POSITION_INFO).filter(pos=>!myPicks.find(p=>p.position===pos));
+      pickerHtml=`<div class="card">
+        <div class="section-title">Your picks (${myPicks.length}/4)</div>
+        ${myPicks.map(p=>`<div class="picked-player" style="background:${posColor(p.position)}">
+          <span style="font-size:20px">${POSITION_INFO[p.position]?.icon}</span>
+          <div class="picked-name">${p.name}</div>
+          <div style="font-size:11px;color:#666">${p.position}</div>
+          <button class="remove-btn" onclick="removeGoalscorer('${p.position}')">Remove</button>
+        </div>`).join('')}
+        ${remaining.map(pos=>`<div class="pos-section">
+          <div class="pos-header">
+            <span class="pos-icon">${POSITION_INFO[pos].icon}</span>
+            <div>
+              <div class="pos-title">Pick your ${pos}</div>
+              <div class="pos-pts">+${POSITION_INFO[pos].pts} pts ${POSITION_INFO[pos].unit}</div>
+            </div>
+          </div>
+          <input type="text" placeholder="Search ${pos}..." oninput="filterGoalscorer('${pos}',this.value)" style="width:100%;height:36px;border:1.5px solid #ddd;border-radius:8px;padding:0 12px;font-size:13px;margin-bottom:6px"/>
+          <div class="picker-grid" id="gs-${pos}" style="max-height:160px">
+            ${getCandidatesByPos(candidates,pos).map(p=>`<div class="player-pick" onclick="addGoalscorer('${p.name.replace(/'/g,"\\'")}','${pos}')">${p.name}</div>`).join('')}
+          </div>
+        </div>`).join('')}
+      </div>`;
+    }
+  } else if(myPicks.length===4){
+    pickerHtml=`<div class="card">
+      <div class="section-title">Your picks & points</div>
+      ${myPicks.map(p=>{
+        const stats=state.goalScorerStats?.[p.name]||{};
+        const pts=p.position==='Goalkeeper'?(stats.cleanSheets||0)*7:(stats.goals||0)*POSITION_INFO[p.position].pts;
+        return`<div class="picked-player" style="background:${posColor(p.position)}">
+          <span style="font-size:20px">${POSITION_INFO[p.position]?.icon}</span>
+          <div class="picked-name">${p.name}<div style="font-size:11px;color:#888">${p.position==='Goalkeeper'?(stats.cleanSheets||0)+' clean sheets':(stats.goals||0)+' goals'}</div></div>
+          <div style="font-weight:700;font-size:16px">${pts} pts</div>
+        </div>`;
+      }).join('')}
+      <div style="font-weight:700;padding:10px 0;border-top:1px solid #eee;margin-top:4px">Total: ${calcGoalscorerPts(currentUser)} pts</div>
+    </div>`;
+  }
+
+  let allPicksHtml='';
+  if(everyonePicked||tournamentStarted){
+    allPicksHtml=`<div class="card"><div class="section-title">Everyone's picks</div>
+      ${allPlayers.map(p=>{
+        const picks=state.goalScorerBets?.[p]||[];
+        const isYou=p===currentUser;
+        const c=colorFor(p);
+        const emoji=state.players[p]?.emoji||'⚽';
+        const pts=calcGoalscorerPts(p);
+        return`<div class="lb-row${isYou?' you':''}">
+          <div class="lb-emoji">${emoji}</div>
+          <div class="lb-info">
+            <div class="lb-name">${p}${isYou?' <span style="font-size:11px;color:#4f86f7">(you)</span>':''}</div>
+            <div class="lb-detail">${picks.map(pk=>`${POSITION_INFO[pk.position]?.icon||''} ${pk.name}`).join(' · ')||'No picks yet'}</div>
+          </div>
+          <div style="text-align:right"><div class="lb-pts-num">${pts}</div><div class="lb-pts-label">pts</div></div>
+        </div>`;
+      }).join('')}
+    </div>`;
+  } else {
+    const cnt=allPlayers.filter(p=>(state.goalScorerBets?.[p]||[]).length===4).length;
+    allPicksHtml=`<div class="card"><div style="color:#aaa;text-align:center;padding:16px;font-size:13px">👁 ${cnt}/${allPlayers.length} players picked — revealed when everyone is done!</div></div>`;
+  }
+  el.innerHTML=heroHtml+pickerHtml+allPicksHtml;
+}
+
+function getCandidatesByPos(candidates, pos){
+  if(candidates.length>10&&typeof candidates[0]==='object') return candidates.filter(p=>p.position===pos).slice(0,50);
+  // fallback
+  return FALLBACK_SCORERS_WITH_POS.filter(p=>p.position===pos);
+}
+function filterGoalscorer(pos,q){
+  const candidates=state.scorerCandidates?.length>10?state.scorerCandidates:FALLBACK_SCORERS_WITH_POS;
+  const grid=document.getElementById('gs-'+pos);
+  if(!grid) return;
+  grid.innerHTML=getCandidatesByPos(candidates,pos).filter(p=>p.name.toLowerCase().includes(q.toLowerCase())).map(p=>`<div class="player-pick" onclick="addGoalscorer('${p.name.replace(/'/g,"\\'")}','${pos}')">${p.name}</div>`).join('');
+}
+function addGoalscorer(name,pos){
+  if(!state.goalScorerBets) state.goalScorerBets={};
+  if(!state.goalScorerBets[currentUser]) state.goalScorerBets[currentUser]=[];
+  const picks=state.goalScorerBets[currentUser];
+  if(picks.find(p=>p.position===pos)){showToast('Already picked a '+pos+'!');return;}
+  if(picks.length>=4){showToast('Already 4 picks!');return;}
+  picks.push({name,position:pos});
+  saveData({goalScorerBets:state.goalScorerBets});
+  showToast(name+' added! '+POSITION_INFO[pos].icon);
+  renderGoalscorers();
+}
+function removeGoalscorer(pos){
+  if((state.matches||[]).some(m=>isMatchLocked(m))){showToast('Picking is locked!');return;}
+  if(!state.goalScorerBets?.[currentUser]) return;
+  state.goalScorerBets[currentUser]=state.goalScorerBets[currentUser].filter(p=>p.position!==pos);
+  saveData({goalScorerBets:state.goalScorerBets});
+  renderGoalscorers();
+}
+function posColor(pos){ const m={Attacker:'#fef7e0',Midfielder:'#e8f0fe',Defender:'#eafaf1',Goalkeeper:'#f3e8fd'}; return m[pos]||'#f8f9fb'; }
+
+// ============ FINALISTS ============
+function renderFinalists(){
+  const el=document.getElementById('tab-finalists');
+  const myPick=state.finalistBets?.[currentUser]||[];
+  const finalists=state.finalists||null;
+  const tournamentStarted=(state.matches||[]).some(m=>isMatchLocked(m));
+  const allTeams=[...new Set((state.matches||[]).filter(m=>m.team1!=='TBD'&&m.team2!=='TBD').flatMap(m=>[m.team1,m.team2]))].sort();
+  const allPlayers=Object.keys(state.players);
+  const everyonePicked=allPlayers.length>0&&allPlayers.every(p=>(state.finalistBets?.[p]||[]).length===2);
+
+  let heroHtml=finalists
+    ?`<div class="bonus-hero hero-dark"><div class="bonus-label">🥈 WC 2026 Finalists</div><div style="font-size:20px;font-weight:800;margin:6px 0">${finalists.map(t=>flag(t)+' '+t).join(' vs ')}</div><div class="bonus-desc">+12 pts per correct team!</div></div>`
+    :`<div class="bonus-hero hero-dark"><div class="bonus-label">🥈 Finalists — +12 pts per correct team</div><div class="bonus-desc">Pick the 2 teams you think will reach the final. ${tournamentStarted?'<strong style="color:#f39c12">Picking is now locked!</strong>':'Must be picked before the first match!'}</div></div>`;
+
+  let pickerHtml='';
+  if(!tournamentStarted&&!finalists){
+    if(myPick.length===2){
+      pickerHtml=`<div class="card"><div class="locked-pick">✓ Your picks: ${myPick.map(t=>flag(t)+' '+t).join(' & ')}</div><div style="font-size:13px;color:#aaa">Locked in! Good luck 🤞</div></div>`;
+    } else {
+      pickerHtml=`<div class="card">
+        <div class="section-title">Pick 2 finalists (${pendingFinalists.length}/2 selected)</div>
+        <div class="teams-grid" id="finalists-grid">
+          ${allTeams.map(t=>`<div class="team-pick${pendingFinalists.includes(t)?' selected':''}" onclick="selectFinalist('${t.replace(/'/g,"\\'")}')">${flag(t)} ${t}</div>`).join('')}
+        </div>
+        ${pendingFinalists.length===2?`<div class="confirm-box">
+          <div style="font-size:14px;font-weight:600;margin-bottom:10px">Confirm: <strong>${pendingFinalists.map(t=>flag(t)+' '+t).join(' & ')}</strong></div>
+          <div style="display:flex;gap:8px">
+            <button class="btn btn-primary btn-sm" onclick="confirmFinalists()">✓ Confirm</button>
+            <button class="btn btn-secondary btn-sm" onclick="cancelFinalists()">Clear</button>
+          </div>
+        </div>`:''}
+      </div>`;
+    }
+  }
+
+  let allPicksHtml='';
+  if(everyonePicked||tournamentStarted){
+    allPicksHtml=`<div class="card"><div class="section-title">Everyone's picks</div><div class="bets-grid">
+      ${allPlayers.map(p=>{
+        const picks=state.finalistBets?.[p]||[];
+        const isYou=p===currentUser;
+        const c=colorFor(p);
+        const correct=finalists?picks.filter(t=>finalists.includes(t)).length:null;
+        const emoji=state.players[p]?.emoji||'⚽';
+        return`<div class="bet-card${isYou?' you':''}" style="background:${c.bg}">
+          <div class="bet-name" style="color:${c.text}">${emoji} ${p}${isYou?' (you)':''}</div>
+          <div class="bet-score" style="font-size:12px;color:${c.text}">${picks.map(t=>flag(t)+' '+t).join('<br>')||'–'}</div>
+          ${finalists?`<div class="bet-pts ${correct>0?'pts-exact':'pts-none'}">${correct>0?'+'+correct*12+' pts':'0 pts'}</div>`:'<div class="bet-pts pts-pending">pending</div>'}
+        </div>`;
+      }).join('')}
+    </div></div>`;
+  } else {
+    const cnt=allPlayers.filter(p=>(state.finalistBets?.[p]||[]).length===2).length;
+    allPicksHtml=`<div class="card"><div style="color:#aaa;text-align:center;padding:16px;font-size:13px">👁 ${cnt}/${allPlayers.length} picked — revealed when everyone is done!</div></div>`;
+  }
+  el.innerHTML=heroHtml+pickerHtml+allPicksHtml;
+}
+
+function selectFinalist(team){
+  if((state.matches||[]).some(m=>isMatchLocked(m))){showToast('Picking closed!');return;}
+  if((state.finalistBets?.[currentUser]||[]).length===2){showToast('Already confirmed!');return;}
+  if(pendingFinalists.includes(team)) pendingFinalists=pendingFinalists.filter(t=>t!==team);
+  else{ if(pendingFinalists.length>=2){showToast('Pick only 2 teams!');return;} pendingFinalists.push(team); }
+  renderFinalists();
+}
+function confirmFinalists(){
+  if(pendingFinalists.length!==2){showToast('Pick exactly 2 teams!');return;}
+  if(!state.finalistBets) state.finalistBets={};
+  state.finalistBets[currentUser]=[...pendingFinalists];
+  pendingFinalists=[];
+  saveData({finalistBets:state.finalistBets});
+  showToast('Finalists confirmed! 🥈');
+  renderFinalists();
+}
+function cancelFinalists(){ pendingFinalists=[]; renderFinalists(); }
+
+// ============ WC WINNER ============
+function renderWCWinner(){
+  const el=document.getElementById('tab-wcwinner');
+  const myPick=state.wcWinnerBets?.[currentUser]||null;
+  const winner=state.wcWinner||null;
+  const tournamentStarted=(state.matches||[]).some(m=>isMatchLocked(m));
+  const allTeams=[...new Set((state.matches||[]).filter(m=>m.team1!=='TBD'&&m.team2!=='TBD').flatMap(m=>[m.team1,m.team2]))].sort();
+  const allPlayers=Object.keys(state.players);
+  const everyonePicked=allPlayers.length>0&&allPlayers.every(p=>state.wcWinnerBets?.[p]);
+
+  let heroHtml=winner
+    ?`<div class="bonus-hero hero-dark"><div class="bonus-label">🏆 World Cup 2026 Champion</div><div style="font-size:24px;font-weight:800;margin:6px 0">${flag(winner)} ${winner}</div><div class="bonus-desc">Players who picked correctly earn +25 pts!</div></div>`
+    :`<div class="bonus-hero hero-dark"><div class="bonus-label">🏆 WC Winner — +25 bonus points</div><div class="bonus-desc">Pick the team that will lift the trophy! ${tournamentStarted?'<strong style="color:#f39c12">Picking is now locked!</strong>':'Must be picked before the first match!'}</div></div>`;
+
+  let pickerHtml='';
+  if(!tournamentStarted&&!winner){
+    if(myPick){
+      pickerHtml=`<div class="card"><div class="locked-pick">✓ Your pick: ${flag(myPick)} ${myPick}</div><div style="font-size:13px;color:#aaa">Locked in! Good luck 🤞</div></div>`;
+    } else {
+      pickerHtml=`<div class="card">
+        <div class="section-title">Pick the World Cup winner</div>
+        <div class="teams-grid">
+          ${allTeams.map(t=>`<div class="team-pick${pendingWCWinner===t?' selected':''}" onclick="selectWCWinner('${t.replace(/'/g,"\\'")}')">${flag(t)} ${t}</div>`).join('')}
+        </div>
+        ${pendingWCWinner?`<div class="confirm-box">
+          <div style="font-size:14px;font-weight:600;margin-bottom:10px">Confirm: <strong>${flag(pendingWCWinner)} ${pendingWCWinner}</strong></div>
+          <div style="display:flex;gap:8px">
+            <button class="btn btn-primary btn-sm" onclick="confirmWCWinner()">✓ Confirm</button>
+            <button class="btn btn-secondary btn-sm" onclick="cancelWCWinner()">Cancel</button>
+          </div>
+        </div>`:''}
+      </div>`;
+    }
+  }
+
+  let allPicksHtml='';
+  if(everyonePicked||tournamentStarted){
+    allPicksHtml=`<div class="card"><div class="section-title">Everyone's picks</div><div class="bets-grid">
+      ${allPlayers.map(p=>{
+        const pick=state.wcWinnerBets?.[p];
+        const isYou=p===currentUser;
+        const c=colorFor(p);
+        const correct=winner&&pick===winner;
+        const emoji=state.players[p]?.emoji||'⚽';
+        return`<div class="bet-card${isYou?' you':''}" style="background:${c.bg}">
+          <div class="bet-name" style="color:${c.text}">${emoji} ${p}${isYou?' (you)':''}</div>
+          <div class="bet-score" style="font-size:13px;color:${c.text}">${pick?flag(pick)+' '+pick:'–'}</div>
+          ${winner?`<div class="bet-pts ${correct?'pts-exact':'pts-none'}">${correct?'+25 pts ✓':'0 pts'}</div>`:'<div class="bet-pts pts-pending">pending</div>'}
+        </div>`;
+      }).join('')}
+    </div></div>`;
+  } else {
+    const cnt=allPlayers.filter(p=>state.wcWinnerBets?.[p]).length;
+    allPicksHtml=`<div class="card"><div style="color:#aaa;text-align:center;padding:16px;font-size:13px">👁 ${cnt}/${allPlayers.length} picked — revealed when everyone is done!</div></div>`;
+  }
+  el.innerHTML=heroHtml+pickerHtml+allPicksHtml;
+}
+
+function selectWCWinner(team){ if((state.matches||[]).some(m=>isMatchLocked(m))){showToast('Picking closed!');return;} if(state.wcWinnerBets?.[currentUser]){showToast('Already confirmed!');return;} pendingWCWinner=team; renderWCWinner(); }
+function confirmWCWinner(){ if(!pendingWCWinner) return; if(!state.wcWinnerBets) state.wcWinnerBets={}; state.wcWinnerBets[currentUser]=pendingWCWinner; pendingWCWinner=null; saveData({wcWinnerBets:state.wcWinnerBets}); showToast('WC Winner confirmed! 🏆'); renderWCWinner(); }
+function cancelWCWinner(){ pendingWCWinner=null; renderWCWinner(); }
+
+// ============ RULES ============
+function renderRules(){
+  document.getElementById('tab-rules').innerHTML=`
+  <div class="card">
+    <div class="section-title">📊 Match predictions — Points by stage</div>
+    <div class="how-row"><div class="how-icon">🟢</div><div><div class="how-title">Group Stage</div><div class="how-desc">🎯 Exact score <span class="pts-pill pill-green">+7 pts</span> · ✅ Correct result <span class="pts-pill pill-blue">+3 pts</span></div></div></div>
+    <div class="how-row"><div class="how-icon">🟡</div><div><div class="how-title">Round of 16 & Quarter Finals</div><div class="how-desc">🎯 Exact score <span class="pts-pill pill-green">+9 pts</span> · ✅ Correct result <span class="pts-pill pill-blue">+4 pts</span></div></div></div>
+    <div class="how-row"><div class="how-icon">🔴</div><div><div class="how-title">Semi Finals & Final</div><div class="how-desc">🎯 Exact score <span class="pts-pill pill-green">+11 pts</span> · ✅ Correct result <span class="pts-pill pill-blue">+5 pts</span></div></div></div>
+    <div class="how-row"><div class="how-icon">ℹ️</div><div><div class="how-title">Important — Regulation time only</div><div class="how-desc">All scores and results are based on <strong>regulation time only</strong> (90 minutes + injury time). Extra time and penalty shootouts are NOT counted for match predictions. In knockout games, you can also predict the penalty shootout winner for a bonus.</div></div></div>
+  </div>
+  <div class="card">
+    <div class="section-title">🌟 Bonus predictions</div>
+    <div class="how-row"><div class="how-icon">⭐</div><div><div class="how-title">Top Scorer <span class="pts-pill pill-gold">+10 pts</span></div><div class="how-desc">Pick the tournament's top scorer before the first match. If correct → +10 bonus points!</div></div></div>
+    <div class="how-row"><div class="how-icon">🥈</div><div><div class="how-title">Finalists <span class="pts-pill pill-green">+12 pts per team</span></div><div class="how-desc">Pick 2 teams you think will reach the final. +12 pts for each correct finalist (max +24 pts).</div></div></div>
+    <div class="how-row"><div class="how-icon">🏆</div><div><div class="how-title">WC Winner <span class="pts-pill pill-gold">+25 pts</span></div><div class="how-desc">Pick the World Cup winner. The biggest bonus — choose wisely!</div></div></div>
+    <div class="how-row"><div class="how-icon">⚽</div><div><div class="how-title">Goalscorer Picks</div><div class="how-desc">Pick 1 player per position before the tournament:<br>⚡ Attacker +6 pts/goal · 🎯 Midfielder +10 pts/goal<br>🛡️ Defender +24 pts/goal · 🧤 Goalkeeper +7 pts/clean sheet</div></div></div>
+    <div class="how-row"><div class="how-icon">🔒</div><div><div class="how-title">Deadline</div><div class="how-desc">All bonus picks (Top Scorer, Finalists, WC Winner, Goalscorers) are locked at kick-off of the first match.</div></div></div>
+  </div>
+  <div class="card">
+    <div class="section-title">⚖️ Tiebreaker rules</div>
+    <div class="how-row"><div class="how-icon">1️⃣</div><div><div class="how-title">Total points</div><div class="how-desc">Highest total points wins.</div></div></div>
+    <div class="how-row"><div class="how-icon">2️⃣</div><div><div class="how-title">Goalscorer points</div><div class="how-desc">If tied, most points from goalscorer picks wins.</div></div></div>
+    <div class="how-row"><div class="how-icon">3️⃣</div><div><div class="how-title">Group stage standings</div><div class="how-desc">If still tied, group stage match prediction points determine ranking.</div></div></div>
+  </div>
+  <div class="card">
+    <div class="section-title">📋 General rules</div>
+    <div class="how-row"><div class="how-icon">🔒</div><div><div class="how-title">Prediction deadline</div><div class="how-desc">Match predictions lock at kick-off. You cannot place or change a prediction after that.</div></div></div>
+    <div class="how-row"><div class="how-icon">👁</div><div><div class="how-title">Hidden predictions</div><div class="how-desc">You cannot see others' predictions until kick-off. No copying!</div></div></div>
+    <div class="how-row"><div class="how-icon">📝</div><div><div class="how-title">One prediction per match</div><div class="how-desc">Once saved, your prediction is final. Think carefully before saving!</div></div></div>
+    <div class="how-row"><div class="how-icon">🔄</div><div><div class="how-title">Automatic updates</div><div class="how-desc">Scores update automatically after each match. Knockout matches appear as teams qualify.</div></div></div>
+  </div>`;
+}
+
+// ============ ADMIN ============
+function openAdmin(){
+  document.getElementById('admin-modal').style.display='flex';
+  document.getElementById('admin-content').innerHTML=`
+    <div class="admin-section">
+      <div class="admin-label">🏆 Set WC Winner (after final)</div>
+      <input class="admin-input" type="text" id="adm-winner" placeholder="e.g. France" value="${state.wcWinner||''}"/>
+    </div>
+    <div class="admin-section">
+      <div class="admin-label">🥈 Set Finalists (after semis)</div>
+      <input class="admin-input" type="text" id="adm-final1" placeholder="Team 1" value="${state.finalists?.[0]||''}"/>
+      <input class="admin-input" type="text" id="adm-final2" placeholder="Team 2" value="${state.finalists?.[1]||''}"/>
+    </div>
+    <div class="admin-section">
+      <div class="admin-label">⭐ Set Top Scorer (after tournament)</div>
+      <input class="admin-input" type="text" id="adm-scorer" placeholder="e.g. Kylian Mbappé (France)" value="${state.topScorerWinner||''}"/>
+    </div>
+    <div class="admin-section">
+      <div class="admin-label">⚽ Update Goalscorer stats (name: goals)</div>
+      <textarea id="adm-stats" style="width:100%;height:100px;border:1.5px solid #ddd;border-radius:10px;padding:10px;font-size:12px;font-family:monospace" placeholder='{"Kylian Mbappé (France)":{"goals":5},"David Raya (England)":{"cleanSheets":3}}'></textarea>
+    </div>
+    <div class="admin-section">
+      <div class="admin-label">🔐 Penalty shootout winner (for specific match)</div>
+      <input class="admin-input" type="text" id="adm-pen-match" placeholder="Match ID"/>
+      <select id="adm-pen-winner" style="width:100%;height:38px;border:1.5px solid #ddd;border-radius:10px;padding:0 12px;font-size:13px;margin-bottom:8px">
+        <option value="">Select winner</option>
+        <option value="home">Home team</option>
+        <option value="away">Away team</option>
+      </select>
+    </div>
+    <div class="admin-section">
+      <div class="admin-label">🔑 Reset player PIN</div>
+      <input class="admin-input" type="text" id="adm-reset-user" placeholder="Username"/>
+      <input class="admin-input" type="text" id="adm-reset-pin" placeholder="New 4-digit PIN"/>
+    </div>
+    <button class="btn btn-primary" style="width:100%;height:44px;margin-bottom:8px" onclick="saveAdmin()">Save all changes</button>
+    <div id="adm-msg" style="font-size:12px;text-align:center;color:#27ae60;display:none">✓ Saved!</div>`;
+}
+
+function closeAdmin(){ document.getElementById('admin-modal').style.display='none'; }
+
+async function saveAdmin(){
+  const winner=document.getElementById('adm-winner').value.trim();
+  const f1=document.getElementById('adm-final1').value.trim();
+  const f2=document.getElementById('adm-final2').value.trim();
+  const scorer=document.getElementById('adm-scorer').value.trim();
+  const statsRaw=document.getElementById('adm-stats').value.trim();
+  const penMatch=document.getElementById('adm-pen-match').value.trim();
+  const penWinner=document.getElementById('adm-pen-winner').value;
+  const resetUser=document.getElementById('adm-reset-user').value.trim();
+  const resetPin=document.getElementById('adm-reset-pin').value.trim();
+  try{
+    if(winner) await apiCall('/api/admin','POST',{password:'ORSEN',action:'setWcWinner',data:{winner}});
+    if(f1&&f2) await apiCall('/api/admin','POST',{password:'ORSEN',action:'setFinalists',data:{finalists:[f1,f2]}});
+    if(scorer) await apiCall('/api/admin','POST',{password:'ORSEN',action:'setTopScorer',data:{topScorer:scorer}});
+    if(statsRaw){ try{ const stats=JSON.parse(statsRaw); await apiCall('/api/admin','POST',{password:'ORSEN',action:'setGoalscorerStats',data:{stats}}); }catch(e){showToast('Invalid JSON for stats');return;} }
+    if(penMatch&&penWinner) await apiCall('/api/admin','POST',{password:'ORSEN',action:'setPenWinner',data:{matchId:penMatch,winner:penWinner}});
+    if(resetUser&&resetPin) await apiCall('/api/admin','POST',{password:'ORSEN',action:'resetPlayer',data:{username:resetUser,newPin:resetPin}});
+    document.getElementById('adm-msg').style.display='block';
+    await loadState();
+    showToast('Admin changes saved! ✓');
+    setTimeout(()=>{ document.getElementById('adm-msg').style.display='none'; },2000);
+  }catch(e){ showToast('Error saving changes'); }
+}
+
+// ============ UTILS ============
+const COLORS=[{bg:'#e8f0fe',text:'#1a56c4'},{bg:'#e6f4ea',text:'#1e7e34'},{bg:'#fce8e6',text:'#c5221f'},{bg:'#fef7e0',text:'#b06000'},{bg:'#f3e8fd',text:'#7b1fa2'},{bg:'#e0f7fa',text:'#00695c'},{bg:'#fff3e0',text:'#e65100'},{bg:'#fce4ec',text:'#c2185b'},{bg:'#e8eaf6',text:'#3949ab'},{bg:'#f1f8e9',text:'#558b2f'},{bg:'#e0f2f1',text:'#00796b'},{bg:'#e3f2fd',text:'#1565c0'},{bg:'#fbe9e7',text:'#bf360c'},{bg:'#ede7f6',text:'#4527a0'}];
+function colorFor(name){ let h=0; for(let c of name) h=(h*31+c.charCodeAt(0))%COLORS.length; return COLORS[h]; }
+function showToast(msg){ const t=document.getElementById('toast'); t.textContent=msg; t.classList.add('show'); setTimeout(()=>t.classList.remove('show'),2500); }
+
+// ============ FALLBACK PLAYER LISTS ============
+const FALLBACK_SCORERS=[
+  'Kylian Mbappé (France)','Antoine Griezmann (France)','Ousmane Dembélé (France)','Marcus Thuram (France)',
+  'Harry Kane (England)','Jude Bellingham (England)','Bukayo Saka (England)','Phil Foden (England)','Cole Palmer (England)',
+  'Vinicius Jr (Brazil)','Rodrygo (Brazil)','Raphinha (Brazil)','Endrick (Brazil)',
+  'Lionel Messi (Argentina)','Julian Alvarez (Argentina)','Lautaro Martinez (Argentina)',
+  'Lamine Yamal (Spain)','Pedri (Spain)','Nico Williams (Spain)','Alvaro Morata (Spain)',
+  'Jamal Musiala (Germany)','Florian Wirtz (Germany)','Kai Havertz (Germany)',
+  'Cristiano Ronaldo (Portugal)','Bruno Fernandes (Portugal)','Rafael Leão (Portugal)',
+  'Cody Gakpo (Netherlands)','Memphis Depay (Netherlands)','Xavi Simons (Netherlands)',
+  'Romelu Lukaku (Belgium)','Kevin De Bruyne (Belgium)','Jeremy Doku (Belgium)',
+  'Erling Haaland (Norway)','Martin Odegaard (Norway)',
+  'Robert Lewandowski (Poland)','Viktor Gyokeres (Sweden)','Alexander Isak (Sweden)',
+  'Mohamed Salah (Egypt)','Victor Osimhen (Nigeria)','Sadio Mane (Senegal)',
+  'Hakim Ziyech (Morocco)','Luis Diaz (Colombia)','Darwin Nunez (Uruguay)',
+  'Christian Pulisic (USA)','Alphonso Davies (Canada)','Jonathan David (Canada)',
+  'Santiago Gimenez (Mexico)','Son Heung-min (South Korea)','Kaoru Mitoma (Japan)',
+];
+const FALLBACK_SCORERS_WITH_POS=[
+  {name:'Kylian Mbappé (France)',position:'Attacker'},{name:'Vinicius Jr (Brazil)',position:'Attacker'},
+  {name:'Harry Kane (England)',position:'Attacker'},{name:'Erling Haaland (Norway)',position:'Attacker'},
+  {name:'Lamine Yamal (Spain)',position:'Attacker'},{name:'Lionel Messi (Argentina)',position:'Attacker'},
+  {name:'Bukayo Saka (England)',position:'Attacker'},{name:'Ousmane Dembélé (France)',position:'Attacker'},
+  {name:'Rafael Leão (Portugal)',position:'Attacker'},{name:'Marcus Thuram (France)',position:'Attacker'},
+  {name:'Cody Gakpo (Netherlands)',position:'Attacker'},{name:'Romelu Lukaku (Belgium)',position:'Attacker'},
+  {name:'Julian Alvarez (Argentina)',position:'Attacker'},{name:'Darwin Nunez (Uruguay)',position:'Attacker'},
+  {name:'Victor Osimhen (Nigeria)',position:'Attacker'},{name:'Santiago Gimenez (Mexico)',position:'Attacker'},
+  {name:'Rodrygo (Brazil)',position:'Attacker'},{name:'Endrick (Brazil)',position:'Attacker'},
+  {name:'Lautaro Martinez (Argentina)',position:'Attacker'},{name:'Alvaro Morata (Spain)',position:'Attacker'},
+  {name:'Jude Bellingham (England)',position:'Midfielder'},{name:'Pedri (Spain)',position:'Midfielder'},
+  {name:'Kevin De Bruyne (Belgium)',position:'Midfielder'},{name:'Florian Wirtz (Germany)',position:'Midfielder'},
+  {name:'Jamal Musiala (Germany)',position:'Midfielder'},{name:'Martin Odegaard (Norway)',position:'Midfielder'},
+  {name:'Bruno Fernandes (Portugal)',position:'Midfielder'},{name:'Gavi (Spain)',position:'Midfielder'},
+  {name:'Phil Foden (England)',position:'Midfielder'},{name:'Cole Palmer (England)',position:'Midfielder'},
+  {name:'Jeremy Doku (Belgium)',position:'Midfielder'},{name:'Xavi Simons (Netherlands)',position:'Midfielder'},
+  {name:'Nico Williams (Spain)',position:'Midfielder'},{name:'Federico Valverde (Uruguay)',position:'Midfielder'},
+  {name:'Christian Pulisic (USA)',position:'Midfielder'},{name:'Moises Caicedo (Ecuador)',position:'Midfielder'},
+  {name:'Kai Havertz (Germany)',position:'Midfielder'},{name:'Antoine Griezmann (France)',position:'Midfielder'},
+  {name:'Fabian Ruiz (Spain)',position:'Midfielder'},{name:'Hakim Ziyech (Morocco)',position:'Midfielder'},
+  {name:'Virgil van Dijk (Netherlands)',position:'Defender'},{name:'William Saliba (England)',position:'Defender'},
+  {name:'Achraf Hakimi (Morocco)',position:'Defender'},{name:'Theo Hernandez (France)',position:'Defender'},
+  {name:'Joao Cancelo (Portugal)',position:'Defender'},{name:'Alphonso Davies (Canada)',position:'Defender'},
+  {name:'Pervis Estupinan (Ecuador)',position:'Defender'},{name:'Sead Kolasinac (Bosnia and Herzegovina)',position:'Defender'},
+  {name:'Benjamin Pavard (France)',position:'Defender'},{name:'Gabriel (England)',position:'Defender'},
+  {name:'Dayot Upamecano (France)',position:'Defender'},{name:'Ronald Araujo (Uruguay)',position:'Defender'},
+  {name:'Alessandro Bastoni (Italy)',position:'Defender'},{name:'Kim Min-jae (South Korea)',position:'Defender'},
+  {name:'Ferland Mendy (France)',position:'Defender'},{name:'Lucas Hernandez (France)',position:'Defender'},
+  {name:'David Raya (England)',position:'Goalkeeper'},{name:'Alisson (Brazil)',position:'Goalkeeper'},
+  {name:'Ederson (Brazil)',position:'Goalkeeper'},{name:'Mike Maignan (France)',position:'Goalkeeper'},
+  {name:'Manuel Neuer (Germany)',position:'Goalkeeper'},{name:'Diogo Costa (Portugal)',position:'Goalkeeper'},
+  {name:'Unai Simon (Spain)',position:'Goalkeeper'},{name:'Emiliano Martinez (Argentina)',position:'Goalkeeper'},
+  {name:'Keylor Navas (Costa Rica)',position:'Goalkeeper'},{name:'Bono (Morocco)',position:'Goalkeeper'},
+  {name:'Yassine Bounou (Morocco)',position:'Goalkeeper'},{name:'Gianluigi Donnarumma (Italy)',position:'Goalkeeper'},
+  {name:'Jan Oblak (Slovenia)',position:'Goalkeeper'},{name:'André Onana (Cameroon)',position:'Goalkeeper'},
+  {name:'Zack Steffen (USA)',position:'Goalkeeper'},{name:'Matt Turner (USA)',position:'Goalkeeper'},
+];
+
+// ============ BOOT ============
+window.onload=async()=>{
+  buildEmojiGrid();
+  const savedUser=localStorage.getItem('wc2026_user');
+  const savedEmoji=localStorage.getItem('wc2026_emoji');
+  if(savedUser&&savedEmoji){
+    currentUser=savedUser; currentEmoji=savedEmoji;
+    await loadState();
+    if(state.players[savedUser]){
+      document.getElementById('login-modal').style.display='none';
+      document.getElementById('app').style.display='block';
+      initApp();
+      return;
+    }
+  }
+};
+</script>
+</body>
+</html>
