@@ -166,13 +166,13 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
     <div class="modal-title">WC 2026 Predictions</div>
     <div class="modal-sub">ORSEN Team Competition</div>
     <div class="tab-btns">
-      <button class="tab-btn active" id="btn-register" onclick="switchAuthTab('register')">Create account</button>
-      <button class="tab-btn" id="btn-login" onclick="switchAuthTab('login')">Sign in</button>
+      <button class="tab-btn" id="btn-register" onclick="switchAuthTab('register')">Create account</button>
+      <button class="tab-btn active" id="btn-login" onclick="switchAuthTab('login')">Sign in</button>
     </div>
     <div id="error-msg" class="error-msg" style="display:none"></div>
 
     <!-- REGISTER -->
-    <div id="register-form">
+    <div id="register-form" style="display:none">
       <input class="modal-input" type="text" id="reg-username" placeholder="Your name or nickname" maxlength="20"/>
       <input class="modal-input" type="password" id="reg-pin" placeholder="Create a 4-digit PIN" maxlength="4" inputmode="numeric"/>
       <div style="font-size:12px;font-weight:600;color:#444;margin-bottom:8px">Pick your avatar:</div>
@@ -185,7 +185,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
     </div>
 
     <!-- LOGIN -->
-    <div id="login-form" style="display:none">
+    <div id="login-form">
       <input class="modal-input" type="text" id="login-username" placeholder="Your name or nickname" maxlength="20"/>
       <input class="modal-input" type="password" id="login-pin" placeholder="Your 4-digit PIN" maxlength="4" inputmode="numeric"/>
       <button class="btn btn-primary" style="width:100%;height:46px;font-size:15px" onclick="login()">Sign in →</button>
