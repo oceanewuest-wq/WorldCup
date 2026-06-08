@@ -1394,13 +1394,18 @@ window.onload=async()=>{
   const savedEmoji=localStorage.getItem('wc2026_emoji');
   if(savedUser&&savedEmoji){
     currentUser=savedUser; currentEmoji=savedEmoji;
-    await loadState();
-    if(state.players[savedUser]){
-      document.getElementById('login-modal').style.display='none';
-      document.getElementById('app').style.display='block';
-      initApp();
-      return;
-    }
+    try {
+      await loadState();
+      if(state.players[savedUser]){
+        document.getElementById('login-modal').style.display='none';
+        document.getElementById('app').style.display='block';
+        initApp();
+        return;
+      }
+    } catch(e) {}
+    // User not found in DB - clear localStorage and show login
+    localStorage.removeItem('wc2026_user');
+    localStorage.removeItem('wc2026_emoji');
   }
 };
 </script>
