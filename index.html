@@ -246,40 +246,80 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 // ============ CONSTANTS ============
 const EMOJIS = ['⚽','🏆','🦁','🐯','🦊','🐺','🦅','🦋','🌟','🔥','💫','⚡','🎯','🏅','🎪','🎨','🚀','🌈','💎','🦄','🐉','🦸','🎭','🎸'];
 const FLAGS = {
-  'Mexico':'🇲🇽','South Africa':'🇿🇦','South Korea':'🇰🇷','Czechia':'🇨🇿','Spain':'🇪🇸',
-  'Curaçao':'🇨🇼','Curacao':'🇨🇼','Japan':'🇯🇵','Germany':'🇩🇪','USA':'🇺🇸','United States':'🇺🇸',
-  'Panama':'🇵🇦','Uruguay':'🇺🇾','Senegal':'🇸🇳','France':'🇫🇷','Algeria':'🇩🇿',
-  'Argentina':'🇦🇷','Iraq':'🇮🇶','Austria':'🇦🇹','Scotland':'🏴󠁧󠁢󠁳󠁣󠁴󠁿','Brazil':'🇧🇷',
-  'Norway':'🇳🇴','Portugal':'🇵🇹','Kuwait':'🇰🇼','Colombia':'🇨🇴','Romania':'🇷🇴',
-  'England':'🏴󠁧󠁢󠁥󠁮󠁧󠁿','Serbia':'🇷🇸','Netherlands':'🇳🇱','New Zealand':'🇳🇿',
-  'Morocco':'🇲🇦','Ukraine':'🇺🇦','Belgium':'🇧🇪','Bolivia':'🇧🇴','Italy':'🇮🇹',
-  'Ecuador':'🇪🇨','Canada':'🇨🇦','Saudi Arabia':'🇸🇦','Switzerland':'🇨🇭',
-  'Cameroon':'🇨🇲','Turkey':'🇹🇷','Türkiye':'🇹🇷','Cape Verde':'🇨🇻','Cabo Verde':'🇨🇻',
-  'Ghana':'🇬🇭','Jordan':'🇯🇴','Croatia':'🇭🇷','DR Congo':'🇨🇩','Congo DR':'🇨🇩',
-  'Iran':'🇮🇷','Paraguay':'🇵🇾','Australia':'🇦🇺','Ivory Coast':'🇨🇮',
-  "Côte d'Ivoire":'🇨🇮',"Cote d'Ivoire":'🇨🇮','Denmark':'🇩🇰','Nigeria':'🇳🇬',
-  'Poland':'🇵🇱','Qatar':'🇶🇦','Bosnia and Herzegovina':'🇧🇦','Bosnia':'🇧🇦',
-  'Uzbekistan':'🇺🇿','Chile':'🇨🇱','Wales':'🏴󠁧󠁢󠁷󠁬󠁳󠁿','Ireland':'🇮🇪',
-  'Sweden':'🇸🇪','Finland':'🇫🇮','Denmark':'🇩🇰','Iceland':'🇮🇸',
-  'Greece':'🇬🇷','Hungary':'🇭🇺','Slovakia':'🇸🇰','Slovenia':'🇸🇮',
-  'Albania':'🇦🇱','North Macedonia':'🇲🇰','Montenegro':'🇲🇪','Kosovo':'🇽🇰',
-  'Bulgaria':'🇧🇬','Belarus':'🇧🇾','Georgia':'🇬🇪','Armenia':'🇦🇲','Azerbaijan':'🇦🇿',
-  'Kazakhstan':'🇰🇿','Luxembourg':'🇱🇺','Malta':'🇲🇹','Cyprus':'🇨🇾',
-  'Israel':'🇮🇱','Palestine':'🇵🇸','Lebanon':'🇱🇧','Syria':'🇸🇾',
-  'UAE':'🇦🇪','United Arab Emirates':'🇦🇪','Bahrain':'🇧🇭','Oman':'🇴🇲',
-  'Tunisia':'🇹🇳','Egypt':'🇪🇬','Mali':'🇲🇱','Burkina Faso':'🇧🇫',
-  'Guinea':'🇬🇳','Guinea-Bissau':'🇬🇼','Mozambique':'🇲🇿','Zimbabwe':'🇿🇼',
-  'Zambia':'🇿🇲','Tanzania':'🇹🇿','Uganda':'🇺🇬','Kenya':'🇰🇪','Ethiopia':'🇪🇹',
-  'Angola':'🇦🇴','Gabon':'🇬🇦','Congo':'🇨🇬','Rwanda':'🇷🇼','Sudan':'🇸🇩',
-  'Venezuela':'🇻🇪','Peru':'🇵🇪','Costa Rica':'🇨🇷','Honduras':'🇭🇳',
-  'Guatemala':'🇬🇹','El Salvador':'🇸🇻','Jamaica':'🇯🇲','Haiti':'🇭🇹',
-  'Trinidad and Tobago':'🇹🇹','Cuba':'🇨🇺','Dominican Republic':'🇩🇴',
-  'Indonesia':'🇮🇩','Thailand':'🇹🇭','Vietnam':'🇻🇳','Philippines':'🇵🇭',
-  'Malaysia':'🇲🇾','China':'🇨🇳','India':'🇮🇳','Pakistan':'🇵🇰',
-  'Bangladesh':'🇧🇩','Sri Lanka':'🇱🇰','Nepal':'🇳🇵','Mongolia':'🇲🇳',
-  'Kyrgyzstan':'🇰🇬','Tajikistan':'🇹🇯','Turkmenistan':'🇹🇲',
-  'TBD':'🏳️','Unknown':'🏳️'
+  // WC 2026 Teams - all name variants the API might return
+  'Mexico':'🇲🇽','MEX':'🇲🇽',
+  'South Africa':'🇿🇦','RSA':'🇿🇦',
+  'South Korea':'🇰🇷','Korea Republic':'🇰🇷','Republic of Korea':'🇰🇷','KOR':'🇰🇷',
+  'Czechia':'🇨🇿','Czech Republic':'🇨🇿','CZE':'🇨🇿',
+  'Spain':'🇪🇸','ESP':'🇪🇸',
+  'Curaçao':'🇨🇼','Curacao':'🇨🇼','CUW':'🇨🇼',
+  'Japan':'🇯🇵','JPN':'🇯🇵',
+  'Germany':'🇩🇪','GER':'🇩🇪',
+  'USA':'🇺🇸','United States':'🇺🇸','United States of America':'🇺🇸','US':'🇺🇸','USA MNT':'🇺🇸',
+  'Panama':'🇵🇦','PAN':'🇵🇦',
+  'Uruguay':'🇺🇾','URU':'🇺🇾',
+  'Senegal':'🇸🇳','SEN':'🇸🇳',
+  'France':'🇫🇷','FRA':'🇫🇷',
+  'Algeria':'🇩🇿','ALG':'🇩🇿',
+  'Argentina':'🇦🇷','ARG':'🇦🇷',
+  'Iraq':'🇮🇶','IRQ':'🇮🇶',
+  'Austria':'🇦🇹','AUT':'🇦🇹',
+  'Scotland':'🏴󠁧󠁢󠁳󠁣󠁴󠁿','SCO':'🏴󠁧󠁢󠁳󠁣󠁴󠁿',
+  'Brazil':'🇧🇷','BRA':'🇧🇷',
+  'Norway':'🇳🇴','NOR':'🇳🇴',
+  'Portugal':'🇵🇹','POR':'🇵🇹',
+  'Kuwait':'🇰🇼','KUW':'🇰🇼',
+  'Colombia':'🇨🇴','COL':'🇨🇴',
+  'Romania':'🇷🇴','ROU':'🇷🇴',
+  'England':'🏴󠁧󠁢󠁥󠁮󠁧󠁿','ENG':'🏴󠁧󠁢󠁥󠁮󠁧󠁿',
+  'Serbia':'🇷🇸','SRB':'🇷🇸',
+  'Netherlands':'🇳🇱','Holland':'🇳🇱','NED':'🇳🇱',
+  'New Zealand':'🇳🇿','NZL':'🇳🇿',
+  'Morocco':'🇲🇦','MAR':'🇲🇦',
+  'Ukraine':'🇺🇦','UKR':'🇺🇦',
+  'Belgium':'🇧🇪','BEL':'🇧🇪',
+  'Bolivia':'🇧🇴','BOL':'🇧🇴',
+  'Italy':'🇮🇹','ITA':'🇮🇹',
+  'Ecuador':'🇪🇨','ECU':'🇪🇨',
+  'Canada':'🇨🇦','CAN':'🇨🇦',
+  'Saudi Arabia':'🇸🇦','KSA':'🇸🇦','Saudi':'🇸🇦',
+  'Switzerland':'🇨🇭','SUI':'🇨🇭','SWI':'🇨🇭',
+  'Cameroon':'🇨🇲','CMR':'🇨🇲',
+  'Turkey':'🇹🇷','Türkiye':'🇹🇷','TUR':'🇹🇷',
+  'Cape Verde':'🇨🇻','Cabo Verde':'🇨🇻','CPV':'🇨🇻','CVI':'🇨🇻',
+  'Ghana':'🇬🇭','GHA':'🇬🇭',
+  'Jordan':'🇯🇴','JOR':'🇯🇴',
+  'Croatia':'🇭🇷','CRO':'🇭🇷','HRV':'🇭🇷',
+  'DR Congo':'🇨🇩','Congo DR':'🇨🇩','Democratic Republic of Congo':'🇨🇩',
+  'Congo, DR':'🇨🇩','DRC':'🇨🇩','COD':'🇨🇩',
+  'Iran':'🇮🇷','IR Iran':'🇮🇷','IRN':'🇮🇷',
+  'Paraguay':'🇵🇾','PAR':'🇵🇾',
+  'Australia':'🇦🇺','AUS':'🇦🇺',
+  'Ivory Coast':'🇨🇮',"Côte d'Ivoire":'🇨🇮',"Cote d'Ivoire":'🇨🇮','CIV':'🇨🇮',
+  'Denmark':'🇩🇰','DEN':'🇩🇰','DNK':'🇩🇰',
+  'Nigeria':'🇳🇬','NGA':'🇳🇬',
+  'Poland':'🇵🇱','POL':'🇵🇱',
+  'Qatar':'🇶🇦','QAT':'🇶🇦',
+  'Bosnia and Herzegovina':'🇧🇦','Bosnia & Herzegovina':'🇧🇦',
+  'Bosnia-Herzegovina':'🇧🇦','Bosnia':'🇧🇦','BIH':'🇧🇦','BiH':'🇧🇦',
+  'Uzbekistan':'🇺🇿','UZB':'🇺🇿',
+  'Chile':'🇨🇱','CHI':'🇨🇱','CHL':'🇨🇱',
+  'Wales':'🏴󠁧󠁢󠁷󠁬󠁳󠁿','WAL':'🏴󠁧󠁢󠁷󠁬󠁳󠁿',
+  'Sweden':'🇸🇪','SWE':'🇸🇪',
+  'Ireland':'🇮🇪','Republic of Ireland':'🇮🇪','IRL':'🇮🇪',
+  'TBD':'🏳️','Unknown':'🏳️',''  :'🏳️'
 };
+
+function flag(team){
+  if(!team) return '🏳️';
+  if(FLAGS[team]) return FLAGS[team];
+  // Try partial match for API name variants
+  for(const [k,v] of Object.entries(FLAGS)){
+    if(k && team.toLowerCase().includes(k.toLowerCase()) && k.length > 3) return v;
+    if(k && k.toLowerCase().includes(team.toLowerCase()) && team.length > 3) return v;
+  }
+  return '🏳️';
+}
 const POSITION_INFO = {
   'Attacker':  {icon:'⚡', pts:6,  unit:'per goal',        label:'Attacker'},
   'Midfielder':{icon:'🎯', pts:10, unit:'per goal',        label:'Midfielder'},
@@ -305,7 +345,7 @@ let pendingWCWinner = null;
 let pendingFinalists = [];
 
 // ============ HELPERS ============
-function flag(team){ return FLAGS[team]||'🏳️'; }
+// flag() function defined above with FLAGS
 function stagePoints(stage){ 
   const s=(stage||'').toUpperCase();
   if(s.includes('FINAL')&&!s.includes('SEMI')&&!s.includes('QUARTER')) return STAGE_POINTS['FINAL'];
