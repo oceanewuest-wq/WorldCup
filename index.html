@@ -723,7 +723,7 @@ function renderTopScorer(){
   const myPick=state.topScorerBets?.[currentUser]||null;
   const winner=state.topScorerWinner||null;
   const tournamentStarted=(state.matches||[]).some(m=>isMatchLocked(m));
-  const candidates=state.scorerCandidates?.length>10?state.scorerCandidates.map(p=>typeof p==='string'?p:p.name):FALLBACK_SCORERS;
+  const candidates=state.scorerCandidates?.length>10?state.scorerCandidates.map(p=>typeof p==='string'?p:p.name):FALLBACK_SCORERS_WITH_POS.map(p=>p.name);
   const allPlayers=Object.keys(state.players);
   const everyonePicked=allPlayers.length>0&&allPlayers.every(p=>state.topScorerBets?.[p]);
 
@@ -777,7 +777,7 @@ function renderTopScorer(){
 }
 
 function filterTopScorers(q){
-  const candidates=state.scorerCandidates?.length>10?state.scorerCandidates.map(p=>typeof p==='string'?p:p.name):FALLBACK_SCORERS;
+  const candidates=state.scorerCandidates?.length>10?state.scorerCandidates.map(p=>typeof p==='string'?p:p.name):FALLBACK_SCORERS_WITH_POS.map(p=>p.name);
   const grid=document.getElementById('ts-grid');
   if(!grid) return;
   grid.innerHTML=candidates.filter(p=>p.toLowerCase().includes(q.toLowerCase())).map(p=>`<div class="player-pick${pendingTopScorer===p?' selected':''}" onclick="selectTopScorer('${p.replace(/'/g,"\\'")}')">${p}</div>`).join('');
